@@ -59,8 +59,6 @@ const g = { // Gun info here
     drone:              [50,    0.25,  0.1,    0.6,    1,      1,      1,      2,      1,      1,      1,      0.1,    1], 
     factory:            [60,    1,     0.1,    0.7,    1,      0.75,   1,      3,      1,      1,      1,      0.1,    1], 
     basic:              [18,    1.4,   0.1,    1,      1,      0.75,   1,      4.5,    1,      1,      1,      15,     1],  
-      basic:            [0.1,    0,   0.1,    1,      100000000000000000000000000000,      100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-                         ,   10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000,      10,    1,      1,      1,      15,     1],  
     /***************** RELOAD RECOIL SHUDDER  SIZE   HEALTH  DAMAGE   PEN    SPEED    MAX    RANGE  DENSITY  SPRAY   RESIST  */
     blank:              [1,     1,     1,      1,      1,      1,      1,      1,      1,      1,      1,      1,      1],
         spam:           [1.1,   1,     1,      1.05,   1,      1.1,    1,      0.9,    0.7,    1,      1,      1,      1.05],      
@@ -121,7 +119,6 @@ const g = { // Gun info here
         construct:      [1.3,   1,     1,      0.9,    1,      1,      1,      1,      1.1,    1,      1,      1,      1], 
         boomerang:      [0.8,   1,     1,      1,      0.5,    0.5,    1,      0.75,   0.75,   1.333,  1,      1,      1], 
     over:               [1.25,  1,     1,      0.85,   0.7,    0.8,    1,      1,      0.9,    1,      2,      1,      1], 
-    superover:          [0.2,   0,     1,      1,    5,    50,    50,      0,      0.9,    1,      2,      1,      1], 
         meta:           [1.333, 1,     1,      1,      1,      0.667,  1,      1,      1,      1,      1,      1,      1],   
         weak:           [2,     1,     1,      1,      0.6,    0.6,    0.8,    0.5,    0.7,    0.25,   0.3,    1,      1],   
         master:         [3,     1,     1,      0.7,    0.4,    0.7,    1,      1,      1,      0.1,    0.5,    1,      1], 
@@ -616,39 +613,6 @@ exports.drone = {
     CLEAR_ON_MASTER_UPGRADE: true,
     BUFF_VS_FOOD: true,
 };
-exports.drone2 = {
-    LABEL: 'Drone',
-    TYPE: 'drone',
-    ACCEPTS_SCORE: true,
-    DANGER: 2,
-    CONTROL_RANGE: 0,
-    SHAPE: 3,
-    MOTION_TYPE: 'chase',
-    FACING_TYPE: 'smoothToTarget',
-    CONTROLLERS: [
-        'nearestDifferentMaster',
-        'canRepel',
-        'mapTargetToGoal',
-        'hangOutNearMaster'
-    ],
-    AI: { BLIND: true, },
-    BODY: {
-        PENETRATION: 1.2,
-        PUSHABILITY: 10,
-        ACCELERATION: 0.05,
-        HEALTH: 0.6 * wepHealthFactor,
-        DAMAGE: 1.25 * wepDamageFactor,
-        SPEED: 1000,
-        RANGE: 200,
-        DENSITY: 0.03,
-        RESIST: 1.5,
-        FOV: 0.8,
-    },
-    HITS_OWN_TYPE: 'hard',
-    DRAW_HEALTH: false,
-    CLEAR_ON_MASTER_UPGRADE: true,
-    BUFF_VS_FOOD: true,
-};
     exports.sunchip = {
         PARENT: [exports.drone],
         SHAPE: 4,
@@ -850,34 +814,6 @@ exports.genericTank = {
         DENSITY: base.DENSITY,
         PUSHABILITY: 0.9,
         HETERO: 3,
-    },
-    GUNS: [],
-    TURRETS: [],
-    GIVE_KILL_MESSAGE: true,
-    DRAW_HEALTH: true,
-};
-exports.ArenaCloser = {
-    LABEL: 'Arena Closer Base',
-    TYPE: 'tank',
-    DAMAGE_CLASS: 2,
-    DANGER: 5,
-    MOTION_TYPE: 'motor',
-    FACING_TYPE: 'toTarget',
-    SIZE: 58,
-    MAX_CHILDREN: 30,   
-    DAMAGE_EFFECTS: false,
-    BODY: { // def
-        ACCELERATION: base.ACCEL*5,
-        SPEED: base.SPEED*5,
-        HEALTH: base.HEALTH*999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999, 
-        DAMAGE: base.DAMAGE*999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999, 
-        PENETRATION: base.PENETRATION*999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999, 
-        SHIELD: base.SHIELD*999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999,
-        REGEN: base.REGEN*999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999,
-        FOV: base.FOV*10,
-        DENSITY: base.DENSITY*5,
-        PUSHABILITY: 0.9*5,
-        HETERO: 3*5,
     },
     GUNS: [],
     TURRETS: [],
@@ -1451,9 +1387,9 @@ exports.basic = {
 };
         exports.testbed = {
             PARENT: [exports.genericTank],
-            LABEL: 'Beta Tester',
+            LABEL: 'TESTBED',
             RESET_UPGRADES: true,
-            SKILL: [999, 999, 999, 999, 999, 999, 999, 999, 999, 999,],
+            SKILL: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0,],
             LEVEL: -1,
             BODY: { // def
                 SHIELD: 1000,
@@ -1463,6 +1399,17 @@ exports.basic = {
                 DENSITY: 20,
                 FOV: 2,
             },
+            SHAPE: [
+              [-1, -0.8],
+              [-0.8, -1],
+              [0.8, -1],
+              [1, -0.8],
+              [0.2, 0],
+              [1, 0.8],
+              [0.8, 1],
+              [-0.8, 1],
+              [-1, 0.8],
+            ],
             TURRETS: [],
             GUNS: [ { /*** LENGTH  WIDTH   ASPECT    X       Y     ANGLE   DELAY */
                 POSITION: [  18,    10,    -1.4,     0,      0,      0,      0,   ], 
@@ -2136,27 +2083,6 @@ exports.basic = {
                 }, },
         ],
     };
-    exports.opdirector = {
-        PARENT: [exports.genericTank],
-        LABEL: 'Director',  
-        STAT_NAMES: statnames.drone,
-        DANGER: 5,
-        BODY: {
-            ACCELERATION: base.ACCEL * 0.75,
-            FOV: base.FOV * 1.1,
-        },
-        MAX_CHILDREN: 5,
-        GUNS: [ { /*** LENGTH  WIDTH   ASPECT    X       Y     ANGLE   DELAY */
-            POSITION: [   6,     12,    1.2,     8,      0,      0,      0,   ], 
-                PROPERTIES: {
-                    SHOOT_SETTINGS: combineStats([g.drone, g.over]),
-                    TYPE: exports.drone,
-                    AUTOFIRE: true,
-                    SYNCS_SKILLS: true,
-                    STAT_CALCULATOR: gunCalcNames.drone,
-                }, },
-        ],
-    };
             exports.master = {
                 PARENT: [exports.genericTank],
                 LABEL: '',  
@@ -2262,7 +2188,6 @@ exports.basic = {
                         }, },
                 ],
             };
-
             exports.overtrap = {
                 PARENT: [exports.genericTank],
                 LABEL: 'Overtrapper',
@@ -2492,327 +2417,6 @@ exports.basic = {
                             TYPE: exports.swarm,
                             STAT_CALCULATOR: gunCalcNames.swarm,        
                             LABEL: 'Guided'                
-                        }, },
-                ],
-            };
-            exports.opbtshlay = {//op battleship layer(for bosses)
-                PARENT: [exports.genericTank],
-                LABEL: 'Turret',
-                DANGER: 7,
-                STAT_NAMES: statnames.swarm,
-                FACING_TYPE: 'locksFacing',
-                BODY: {
-                    ACCELERATION: base.ACCEL,
-                    FOV: base.FOV * 1.2,
-                },
-                GUNS: [ { /*** LENGTH  WIDTH   ASPECT    X       Y     ANGLE   DELAY */
-                    POSITION: [   7,    7.5,    0.6,     7,      4,     90,      0,   ], 
-                        PROPERTIES: {
-                            SHOOT_SETTINGS: combineStats([g.swarm, g.battle]),
-                            TYPE: exports.swarm,
-                            STAT_CALCULATOR: gunCalcNames.swarm,        
-                            LABEL: 'Guided'                
-                        }, }, {
-                    POSITION: [   7,    7.5,    0.6,     7,     -4,     90,     0.5,  ], 
-                        PROPERTIES: {
-                            SHOOT_SETTINGS: combineStats([g.swarm]),
-                            TYPE: [exports.autoswarm],
-                            STAT_CALCULATOR: gunCalcNames.swarm,        
-                            LABEL: 'Autonomous',        
-                        }, }, {
-                    POSITION: [   7,    7.5,    0.6,     7,      4,     270,     0,   ], 
-                        PROPERTIES: {
-                            SHOOT_SETTINGS: combineStats([g.swarm]),
-                            TYPE: [exports.autoswarm],
-                            STAT_CALCULATOR: gunCalcNames.swarm,        
-                            LABEL: 'Autonomous',         
-                        }, }, {
-                    POSITION: [   7,    7.5,    0.6,     7,     -4,     270,    0.5,  ], 
-                        PROPERTIES: {
-                            SHOOT_SETTINGS: combineStats([g.swarm, g.battle]),
-                            TYPE: exports.swarm,
-                            STAT_CALCULATOR: gunCalcNames.swarm,        
-                            LABEL: 'Guided'  
-                                          },},{
-                    POSITION: [   7,    7.5,    0.6,     7,      4,     90,      0,   ], 
-                        PROPERTIES: {
-                            SHOOT_SETTINGS: combineStats([g.swarm, g.battle]),
-                            TYPE: exports.swarm,
-                            STAT_CALCULATOR: gunCalcNames.swarm,        
-                            LABEL: 'Guided'                
-                        }, }, {
-                    POSITION: [   7,    7.5,    0.6,     7,     -4,     90,     0.5,  ], 
-                        PROPERTIES: {
-                            SHOOT_SETTINGS: combineStats([g.swarm]),
-                            TYPE: [exports.autoswarm],
-                            STAT_CALCULATOR: gunCalcNames.swarm,        
-                            LABEL: 'Autonomous',        
-                        }, }, {
-                    POSITION: [   7,    7.5,    0.6,     7,      4,     270,     0,   ], 
-                        PROPERTIES: {
-                            SHOOT_SETTINGS: combineStats([g.swarm]),
-                            TYPE: [exports.autoswarm],
-                            STAT_CALCULATOR: gunCalcNames.swarm,        
-                            LABEL: 'Autonomous',         
-                        }, }, {
-                    POSITION: [   7,    7.5,    0.6,     7,     -4,     270,    0.5,  ], 
-                        PROPERTIES: {
-                            SHOOT_SETTINGS: combineStats([g.swarm, g.battle]),
-                            TYPE: exports.swarm,
-                            STAT_CALCULATOR: gunCalcNames.swarm,        
-                            LABEL: 'Guided'    
-                                          },},{
-                    POSITION: [   7,    7.5,    0.6,     7,      4,     90,      0,   ], 
-                        PROPERTIES: {
-                            SHOOT_SETTINGS: combineStats([g.swarm, g.battle]),
-                            TYPE: exports.swarm,
-                            STAT_CALCULATOR: gunCalcNames.swarm,        
-                            LABEL: 'Guided'                
-                        }, }, {
-                    POSITION: [   7,    7.5,    0.6,     7,     -4,     90,     0.5,  ], 
-                        PROPERTIES: {
-                            SHOOT_SETTINGS: combineStats([g.swarm]),
-                            TYPE: [exports.autoswarm],
-                            STAT_CALCULATOR: gunCalcNames.swarm,        
-                            LABEL: 'Autonomous',        
-                        }, }, {
-                    POSITION: [   7,    7.5,    0.6,     7,      4,     270,     0,   ], 
-                        PROPERTIES: {
-                            SHOOT_SETTINGS: combineStats([g.swarm]),
-                            TYPE: [exports.autoswarm],
-                            STAT_CALCULATOR: gunCalcNames.swarm,        
-                            LABEL: 'Autonomous',         
-                        }, }, {
-                    POSITION: [   7,    7.5,    0.6,     7,     -4,     270,    0.5,  ], 
-                        PROPERTIES: {
-                            SHOOT_SETTINGS: combineStats([g.swarm, g.battle]),
-                            TYPE: exports.swarm,
-                            STAT_CALCULATOR: gunCalcNames.swarm,        
-                            LABEL: 'Guided'    
-                                          },},{
-                    POSITION: [   7,    7.5,    0.6,     7,      4,     90,      0,   ], 
-                        PROPERTIES: {
-                            SHOOT_SETTINGS: combineStats([g.swarm, g.battle]),
-                            TYPE: exports.swarm,
-                            STAT_CALCULATOR: gunCalcNames.swarm,        
-                            LABEL: 'Guided'                
-                        }, }, {
-                    POSITION: [   7,    7.5,    0.6,     7,     -4,     90,     0.5,  ], 
-                        PROPERTIES: {
-                            SHOOT_SETTINGS: combineStats([g.swarm]),
-                            TYPE: [exports.autoswarm],
-                            STAT_CALCULATOR: gunCalcNames.swarm,        
-                            LABEL: 'Autonomous',        
-                        }, }, {
-                    POSITION: [   7,    7.5,    0.6,     7,      4,     270,     0,   ], 
-                        PROPERTIES: {
-                            SHOOT_SETTINGS: combineStats([g.swarm]),
-                            TYPE: [exports.autoswarm],
-                            STAT_CALCULATOR: gunCalcNames.swarm,        
-                            LABEL: 'Autonomous',         
-                        }, }, {
-                    POSITION: [   7,    7.5,    0.6,     7,     -4,     270,    0.5,  ], 
-                        PROPERTIES: {
-                            SHOOT_SETTINGS: combineStats([g.swarm, g.battle]),
-                            TYPE: exports.swarm,
-                            STAT_CALCULATOR: gunCalcNames.swarm,        
-                            LABEL: 'Guided'    
-                                          },},{
-                    POSITION: [   7,    7.5,    0.6,     7,      4,     90,      0,   ], 
-                        PROPERTIES: {
-                            SHOOT_SETTINGS: combineStats([g.swarm, g.battle]),
-                            TYPE: exports.swarm,
-                            STAT_CALCULATOR: gunCalcNames.swarm,        
-                            LABEL: 'Guided'                
-                        }, }, {
-                    POSITION: [   7,    7.5,    0.6,     7,     -4,     90,     0.5,  ], 
-                        PROPERTIES: {
-                            SHOOT_SETTINGS: combineStats([g.swarm]),
-                            TYPE: [exports.autoswarm],
-                            STAT_CALCULATOR: gunCalcNames.swarm,        
-                            LABEL: 'Autonomous',        
-                        }, }, {
-                    POSITION: [   7,    7.5,    0.6,     7,      4,     270,     0,   ], 
-                        PROPERTIES: {
-                            SHOOT_SETTINGS: combineStats([g.swarm]),
-                            TYPE: [exports.autoswarm],
-                            STAT_CALCULATOR: gunCalcNames.swarm,        
-                            LABEL: 'Autonomous',         
-                        }, }, {
-                    POSITION: [   7,    7.5,    0.6,     7,     -4,     270,    0.5,  ], 
-                        PROPERTIES: {
-                            SHOOT_SETTINGS: combineStats([g.swarm, g.battle]),
-                            TYPE: exports.swarm,
-                            STAT_CALCULATOR: gunCalcNames.swarm,        
-                            LABEL: 'Guided'    
-                                          },},{
-                    POSITION: [   7,    7.5,    0.6,     7,      4,     90,      0,   ], 
-                        PROPERTIES: {
-                            SHOOT_SETTINGS: combineStats([g.swarm, g.battle]),
-                            TYPE: exports.swarm,
-                            STAT_CALCULATOR: gunCalcNames.swarm,        
-                            LABEL: 'Guided'                
-                        }, }, {
-                    POSITION: [   7,    7.5,    0.6,     7,     -4,     90,     0.5,  ], 
-                        PROPERTIES: {
-                            SHOOT_SETTINGS: combineStats([g.swarm]),
-                            TYPE: [exports.autoswarm],
-                            STAT_CALCULATOR: gunCalcNames.swarm,        
-                            LABEL: 'Autonomous',        
-                        }, }, {
-                    POSITION: [   7,    7.5,    0.6,     7,      4,     270,     0,   ], 
-                        PROPERTIES: {
-                            SHOOT_SETTINGS: combineStats([g.swarm]),
-                            TYPE: [exports.autoswarm],
-                            STAT_CALCULATOR: gunCalcNames.swarm,        
-                            LABEL: 'Autonomous',         
-                        }, }, {
-                    POSITION: [   7,    7.5,    0.6,     7,     -4,     270,    0.5,  ], 
-                        PROPERTIES: {
-                            SHOOT_SETTINGS: combineStats([g.swarm, g.battle]),
-                            TYPE: exports.swarm,
-                            STAT_CALCULATOR: gunCalcNames.swarm,        
-                            LABEL: 'Guided'    
-                                          },},{
-                    POSITION: [   7,    7.5,    0.6,     7,      4,     90,      0,   ], 
-                        PROPERTIES: {
-                            SHOOT_SETTINGS: combineStats([g.swarm, g.battle]),
-                            TYPE: exports.swarm,
-                            STAT_CALCULATOR: gunCalcNames.swarm,        
-                            LABEL: 'Guided'                
-                        }, }, {
-                    POSITION: [   7,    7.5,    0.6,     7,     -4,     90,     0.5,  ], 
-                        PROPERTIES: {
-                            SHOOT_SETTINGS: combineStats([g.swarm]),
-                            TYPE: [exports.autoswarm],
-                            STAT_CALCULATOR: gunCalcNames.swarm,        
-                            LABEL: 'Autonomous',        
-                        }, }, {
-                    POSITION: [   7,    7.5,    0.6,     7,      4,     270,     0,   ], 
-                        PROPERTIES: {
-                            SHOOT_SETTINGS: combineStats([g.swarm]),
-                            TYPE: [exports.autoswarm],
-                            STAT_CALCULATOR: gunCalcNames.swarm,        
-                            LABEL: 'Autonomous',         
-                        }, }, {
-                    POSITION: [   7,    7.5,    0.6,     7,     -4,     270,    0.5,  ], 
-                        PROPERTIES: {
-                            SHOOT_SETTINGS: combineStats([g.swarm, g.battle]),
-                            TYPE: exports.swarm,
-                            STAT_CALCULATOR: gunCalcNames.swarm,        
-                            LABEL: 'Guided'    
-                                          },},{
-                    POSITION: [   7,    7.5,    0.6,     7,      4,     90,      0,   ], 
-                        PROPERTIES: {
-                            SHOOT_SETTINGS: combineStats([g.swarm, g.battle]),
-                            TYPE: exports.swarm,
-                            STAT_CALCULATOR: gunCalcNames.swarm,        
-                            LABEL: 'Guided'                
-                        }, }, {
-                    POSITION: [   7,    7.5,    0.6,     7,     -4,     90,     0.5,  ], 
-                        PROPERTIES: {
-                            SHOOT_SETTINGS: combineStats([g.swarm]),
-                            TYPE: [exports.autoswarm],
-                            STAT_CALCULATOR: gunCalcNames.swarm,        
-                            LABEL: 'Autonomous',        
-                        }, }, {
-                    POSITION: [   7,    7.5,    0.6,     7,      4,     270,     0,   ], 
-                        PROPERTIES: {
-                            SHOOT_SETTINGS: combineStats([g.swarm]),
-                            TYPE: [exports.autoswarm],
-                            STAT_CALCULATOR: gunCalcNames.swarm,        
-                            LABEL: 'Autonomous',         
-                        }, }, {
-                    POSITION: [   7,    7.5,    0.6,     7,     -4,     270,    0.5,  ], 
-                        PROPERTIES: {
-                            SHOOT_SETTINGS: combineStats([g.swarm, g.battle]),
-                            TYPE: exports.swarm,
-                            STAT_CALCULATOR: gunCalcNames.swarm,        
-                            LABEL: 'Guided'    
-                                          },},{
-                    POSITION: [   7,    7.5,    0.6,     7,      4,     90,      0,   ], 
-                        PROPERTIES: {
-                            SHOOT_SETTINGS: combineStats([g.swarm, g.battle]),
-                            TYPE: exports.swarm,
-                            STAT_CALCULATOR: gunCalcNames.swarm,        
-                            LABEL: 'Guided'                
-                        }, }, {
-                    POSITION: [   7,    7.5,    0.6,     7,     -4,     90,     0.5,  ], 
-                        PROPERTIES: {
-                            SHOOT_SETTINGS: combineStats([g.swarm]),
-                            TYPE: [exports.autoswarm],
-                            STAT_CALCULATOR: gunCalcNames.swarm,        
-                            LABEL: 'Autonomous',        
-                        }, }, {
-                    POSITION: [   7,    7.5,    0.6,     7,      4,     270,     0,   ], 
-                        PROPERTIES: {
-                            SHOOT_SETTINGS: combineStats([g.swarm]),
-                            TYPE: [exports.autoswarm],
-                            STAT_CALCULATOR: gunCalcNames.swarm,        
-                            LABEL: 'Autonomous',         
-                        }, }, {
-                    POSITION: [   7,    7.5,    0.6,     7,     -4,     270,    0.5,  ], 
-                        PROPERTIES: {
-                            SHOOT_SETTINGS: combineStats([g.swarm, g.battle]),
-                            TYPE: exports.swarm,
-                            STAT_CALCULATOR: gunCalcNames.swarm,        
-                            LABEL: 'Guided'    
-                                          },},{
-                    POSITION: [   7,    7.5,    0.6,     7,      4,     90,      0,   ], 
-                        PROPERTIES: {
-                            SHOOT_SETTINGS: combineStats([g.swarm, g.battle]),
-                            TYPE: exports.swarm,
-                            STAT_CALCULATOR: gunCalcNames.swarm,        
-                            LABEL: 'Guided'                
-                        }, }, {
-                    POSITION: [   7,    7.5,    0.6,     7,     -4,     90,     0.5,  ], 
-                        PROPERTIES: {
-                            SHOOT_SETTINGS: combineStats([g.swarm]),
-                            TYPE: [exports.autoswarm],
-                            STAT_CALCULATOR: gunCalcNames.swarm,        
-                            LABEL: 'Autonomous',        
-                        }, }, {
-                    POSITION: [   7,    7.5,    0.6,     7,      4,     270,     0,   ], 
-                        PROPERTIES: {
-                            SHOOT_SETTINGS: combineStats([g.swarm]),
-                            TYPE: [exports.autoswarm],
-                            STAT_CALCULATOR: gunCalcNames.swarm,        
-                            LABEL: 'Autonomous',         
-                        }, }, {
-                    POSITION: [   7,    7.5,    0.6,     7,     -4,     270,    0.5,  ], 
-                        PROPERTIES: {
-                            SHOOT_SETTINGS: combineStats([g.swarm, g.battle]),
-                            TYPE: exports.swarm,
-                            STAT_CALCULATOR: gunCalcNames.swarm,        
-                            LABEL: 'Guided'    
-                                          },},{
-                    POSITION: [   7,    7.5,    0.6,     7,      4,     90,      0,   ], 
-                        PROPERTIES: {
-                            SHOOT_SETTINGS: combineStats([g.swarm, g.battle]),
-                            TYPE: exports.swarm,
-                            STAT_CALCULATOR: gunCalcNames.swarm,        
-                            LABEL: 'Guided'                
-                        }, }, {
-                    POSITION: [   7,    7.5,    0.6,     7,     -4,     90,     0.5,  ], 
-                        PROPERTIES: {
-                            SHOOT_SETTINGS: combineStats([g.swarm]),
-                            TYPE: [exports.autoswarm],
-                            STAT_CALCULATOR: gunCalcNames.swarm,        
-                            LABEL: 'Autonomous',        
-                        }, }, {
-                    POSITION: [   7,    7.5,    0.6,     7,      4,     270,     0,   ], 
-                        PROPERTIES: {
-                            SHOOT_SETTINGS: combineStats([g.swarm]),
-                            TYPE: [exports.autoswarm],
-                            STAT_CALCULATOR: gunCalcNames.swarm,        
-                            LABEL: 'Autonomous',         
-                        }, }, {
-                    POSITION: [   7,    7.5,    0.6,     7,     -4,     270,    0.5,  ], 
-                        PROPERTIES: {
-                            SHOOT_SETTINGS: combineStats([g.swarm, g.battle]),
-                            TYPE: exports.swarm,
-                            STAT_CALCULATOR: gunCalcNames.swarm,        
-                            LABEL: 'Guided'    
                         }, },
                 ],
             };
@@ -4267,122 +3871,15 @@ exports.basic = {
                 ],
             };
 
-            exports.pentastreamlay= {
-                PARENT: [exports.genericTank],
-                LABEL: 'Penta-Stream shot layer',
-                DANGER: 7,
-                BODY: {
-                    SPEED: base.SPEED * 0.85,
-                },
-                GUNS: [ { /*** LENGTH  WIDTH   ASPECT    X       Y     ANGLE   DELAY */
-                    POSITION: [  16,     8,      1,      0,     -3,    -30,    0.667, ], 
-                        PROPERTIES: {
-                            SHOOT_SETTINGS: combineStats([g.basic, g.twin, g.bent]),
-                            TYPE: exports.bullet,
-                        }, }, {
-                    POSITION: [  16,     8,      1,      0,      3,     30,    0.667, ], 
-                        PROPERTIES: {
-                            SHOOT_SETTINGS: combineStats([g.basic, g.twin, g.bent]),
-                            TYPE: exports.bullet,
-                        }, }, {
-                    POSITION: [  19,     8,      1,      0,     -2,    -15,    0.333, ], 
-                        PROPERTIES: {
-                            SHOOT_SETTINGS: combineStats([g.basic, g.twin, g.bent]),
-                            TYPE: exports.bullet,
-                        }, }, {
-                    POSITION: [  19,     8,      1,      0,      2,     15,    0.333, ], 
-                        PROPERTIES: {
-                            SHOOT_SETTINGS: combineStats([g.basic, g.twin, g.bent]),
-                            TYPE: exports.bullet,
-                        }, }, {
-                    POSITION: [  22,     8,      1,      0,      0,      0,      0,   ], 
-                        PROPERTIES: {
-                            SHOOT_SETTINGS: combineStats([g.basic, g.twin, g.bent]),
-                            TYPE: exports.bullet,
-                        }, },
-                ],
-            };
-            exports.pentastream0 = makeAuto(exports.pentastreamlay, 'Penta-Stream Shot Layer 1', { type: exports.stream, size: 11, });
-            exports.pentastream1= {
-                PARENT: [exports.genericTank],
-                LABEL: 'Penta-Stream Shot',
-                DANGER: 7,
-              SIZE:100,
-                BODY: {
-                    SPEED: base.SPEED * 0.85,
-                },
-                GUNS: [ { /*** LENGTH  WIDTH   ASPECT    X       Y     ANGLE   DELAY */
-                    POSITION: [  16,     8,      1,      0,     -3,    -30,    0.667, ], 
-                        PROPERTIES: {
-                            SHOOT_SETTINGS: combineStats([g.basic, g.twin, g.bent]),
-                            TYPE: exports.bullet,
-                        }, }, {
-                    POSITION: [  16,     8,      1,      0,      3,     30,    0.667, ], 
-                        PROPERTIES: {
-                            SHOOT_SETTINGS: combineStats([g.basic, g.twin, g.bent]),
-                            TYPE: exports.bullet,
-                        }, }, {
-                    POSITION: [  19,     8,      1,      0,     -2,    -15,    0.333, ], 
-                        PROPERTIES: {
-                            SHOOT_SETTINGS: combineStats([g.basic, g.twin, g.bent]),
-                            TYPE: exports.bullet,
-                        }, }, {
-                    POSITION: [  19,     8,      1,      0,      2,     15,    0.333, ], 
-                        PROPERTIES: {
-                            SHOOT_SETTINGS: combineStats([g.basic, g.twin, g.bent]),
-                            TYPE: exports.bullet,
-                        }, }, {
-                    POSITION: [  22,     8,      1,      0,      0,      0,      0,   ], 
-                        PROPERTIES: {
-                            SHOOT_SETTINGS: combineStats([g.basic, g.twin, g.bent]),
-                            TYPE: exports.bullet,
-                        }, },
-                ],
-            };
-            exports.pentastream1 = makeAuto(exports.pentastream0, 'Penta-Stream Shot', { type: exports.preda, size: 15, });
-exports.Arena_Closer_Basic = {
-    PARENT: [exports.ArenaCloser],
-    TYPE: 'Arena Closer',
-    DANGER: 6,
-                FOV: base.FOV * 10,
-    SKILL: skillSet({
-        rld: 10,
-        dam: 999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999, 
-        pen: 999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999,
-        str: 100000000000,
-        spd: 10,
-        atk: 99999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999,
-        hlt: 999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999,
-        shi: 999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999,
-        rgn: 99999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999,
-        mob: 20,        
-    }),
-    LEVEL: 60,
-    CONTROLLERS: ['nearestDifferentMaster',  'canRepel'],
-    AI: { NO_LEAD: true, },
-    FACING_TYPE: '',
-    HITS_OWN_TYPE: 'hard',
-    BROADCAST_MESSAGE: 'Arena Closer died?Something feel fishy here',
-};
-exports.Arena_Closer_Single = {
-    PARENT: [exports.Arena_Closer_Basic],
-    LABEL: 'Arena Closer Single',
-  SIZE:58,
-                FOV: base.FOV * 10,
-    //CONTROLLERS: ['nearestDifferentMaster'],
-    GUNS: [ { /*** LENGTH  WIDTH   ASPECT    X       Y     ANGLE   DELAY */
-        POSITION: [  14,     8,      1,      0,      0,      0,      0,   ], 
-        PROPERTIES: {
-            SHOOT_SETTINGS: combineStats([g.ac]),
-            TYPE: exports.bullet,  // def
-        }, }, 
-    ],
-};
-
 // UPGRADE PATHS
 exports.testbed.UPGRADES_TIER_1 = [
-    exports.pentastream1,
-  exports.Arena_Closer_Singgle
+    exports.autocruiser, 
+    exports.master, 
+    exports.dual, 
+    exports.hiveshooter, 
+    exports.brutalizer,
+    exports.shotgun2,
+    exports.hybridmini
 ];
 
 exports.basic.UPGRADES_TIER_1 = [exports.twin, exports.sniper, exports.machine, exports.flank, exports.director];
@@ -4573,29 +4070,6 @@ exports.miniboss = {
     HITS_OWN_TYPE: 'hard',
     BROADCAST_MESSAGE: 'A visitor has left!',
 };
-exports.superboss = {
-    PARENT: [exports.genericTank],
-    TYPE: 'Superboss',
-    DANGER: 6,
-    SKILL: skillSet({
-        rld: 5,
-        dam: 5, 
-        pen: 5,
-        str: 5,
-        spd: 5,
-        atk: 5,
-        hlt: 10,
-        shi: 10,
-        rgn: 25,
-        mob: 0,        
-    }),
-    LEVEL: 90,
-    CONTROLLERS: ['nearestDifferentMaster',  'canRepel'],
-    AI: { NO_LEAD: true, },
-    FACING_TYPE: 'autospin',
-    HITS_OWN_TYPE: 'hard',
-    BROADCAST_MESSAGE: 'A Superboss has left!',
-};
     exports.crasherSpawner = {
         PARENT: [exports.genericTank],
         LABEL: 'Spawned',  
@@ -4633,24 +4107,6 @@ exports.superboss = {
             DAMAGE: base.DAMAGE * 2.5,
         },
     };
-    exports.elite2= {
-        PARENT: [exports.miniboss],
-        LABEL: 'Elite Crasher',
-        COLOR: 1,
-        SHAPE: 3,
-        SIZE: 100,
-        VARIES_IN_SIZE: true,
-        VALUE: 15000000,
-        BODY: {
-            FOV: 2.3,
-            SPEED: base.SPEED * 2,
-            HEALTH: base.HEALTH * 10,
-            SHIELD: base.SHIELD * 1.25,
-            REGEN: base.REGEN,
-            DAMAGE: base.DAMAGE * 200,
-        },
-    };
-
         exports.elite_destroyer = {
             PARENT: [exports.elite],
             GUNS: [ { /*** LENGTH  WIDTH   ASPECT    X       Y     ANGLE   DELAY */
@@ -4729,49 +4185,6 @@ exports.superboss = {
                         },
             ],
         };
-        exports.super_elite={
-            PARENT: [exports.elite2],
-            AI: { NO_LEAD: false, },
-            TURRETS: [{ /*  SIZE     X       Y     ANGLE    ARC */
-                POSITION: [  14,6,      0,     180,     190, 0], 
-                    TYPE: [exports.spray, { COLOR: 5, }],
-                        }, {
-                POSITION: [  14,     6,      0,      60,    190, 0], 
-                    TYPE: [exports.spray, { COLOR: 5, }],
-                        }, {
-                POSITION: [  14,     6,      0,     -60,    190, 0], 
-                    TYPE: [exports.spray, { COLOR: 5, }],
-                POSITION: [  14,6,      0,     180,     190, 0], 
-                    TYPE: [exports.sidewind, { COLOR: 5, }],
-                        }, {
-                POSITION: [  14,     6,      0,      60,    190, 0], 
-                    TYPE: [exports.sidewind, { COLOR: 5, }],
-                        }, {
-                POSITION: [  14,     6,      0,     -60,    190, 0], 
-                    TYPE: [exports.sidewind, { COLOR: 5, }],
-                                          POSITION: [  14,6,      0,     180,     190, 0], 
-                    TYPE: [exports.penta, { COLOR: 5, }],
-                        }, {
-                POSITION: [  14,     6,      0,      60,    190, 0], 
-                    TYPE: [exports.penta, { COLOR: 5, }],
-                        }, {
-                POSITION: [  14,     6,      0,     -60,    190, 0], 
-                    TYPE: [exports.penta, { COLOR: 5, }],
-                POSITION: [  14,6,      0,     180,     190, 0], 
-                    TYPE: [exports.preda, { COLOR: 5, }],
-                        }, {
-                POSITION: [  14,     6,      0,      60,    190, 0], 
-                    TYPE: [exports.preda, { COLOR: 5, }],
-                        }, {
-                POSITION: [  14,     6,      0,     -60,    190, 0], 
-                    TYPE: [exports.preda, { COLOR: 5, }],
-                                                  }, {
-                POSITION: [25,  0,      0,     0,   190, 0], 
-                    TYPE: [exports.preda, { COLOR: 5, }],
-                        },
-            ],
-        };
-
 
     exports.palisade = (() => {
         let props = {
@@ -4857,4 +4270,4 @@ exports.bot = {
     AI: { STRAFE: true, },
 };
 
-exports.testbed.UPGRADES_TIER_1.push(exports.super_elite);
+exports.testbed.UPGRADES_TIER_1.push(exports.elite_sprayer);
